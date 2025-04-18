@@ -25,11 +25,21 @@ namespace DLS.Simulation
 		}
 
 		public UInt64 GetRawBits() => bitStates;
+		public UInt64 GetTristateFlags() => tristateFlags;
 
 		public void SetAllBits_NoneDisconnected(UInt64 newBitStates)
 		{
 			bitStates = newBitStates;
 			tristateFlags = 0;
+		}
+		
+		public void SetAllBits(UInt64 newBitStates)
+		{
+			bitStates = newBitStates;
+		}
+		public void SetAllTristateFlags(UInt64 _tristateFlags)
+		{
+			this.tristateFlags = _tristateFlags;
 		}
 
 		public bool FirstBitHigh() => (bitStates & 1) == LogicHigh;

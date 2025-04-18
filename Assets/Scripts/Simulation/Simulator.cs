@@ -250,6 +250,111 @@ namespace DLS.Simulation
 					}
 
 					break;
+				
+				case ChipType.Merge_1To32Bit:
+				{
+					for (int i = 0; i < 32; i++)
+					{
+						chip.OutputPins[0].State.SetBit(i, chip.InputPins[31 - i].State.GetBit(0));
+					}
+					break;
+				}
+				case ChipType.Merge_4To32Bit:
+				{
+					MergeXBitToYSource(chip, 4, 32);
+					break;
+				}
+				case ChipType.Merge_8To32Bit:
+				{
+					MergeXBitToYSource(chip, 8, 32);
+					break;
+				}
+				case ChipType.Merge_16To32Bit:
+				{
+					MergeXBitToYSource(chip, 16, 32);
+					break;
+				}
+				case ChipType.Merge_1To64Bit:
+					for (int i = 0; i < 64; i++)
+					{
+						chip.OutputPins[0].State.SetBit(i, chip.InputPins[63 - i].State.GetBit(0));
+					}
+					break;
+				case ChipType.Merge_4To64Bit:
+				{
+					MergeXBitToYSource(chip, 4, 64);
+					break;
+				}
+				case ChipType.Merge_8To64Bit:
+				{
+					MergeXBitToYSource(chip, 8, 64);
+					break;
+				}
+				case ChipType.Merge_16To64Bit:
+				{
+					MergeXBitToYSource(chip, 16, 64);
+					break;
+				}
+				case ChipType.Merge_32To64Bit:
+				{
+					MergeXBitToYSource(chip, 32, 64);
+					break;
+				}
+				case ChipType.Split_64To4Bit:
+				{
+					SplitXBitToYSource(chip, 64, 4);
+					break;
+				}
+				case ChipType.Split_64To8Bit:
+				{
+					SplitXBitToYSource(chip, 64, 8);
+					break;
+				}
+				case ChipType.Split_64To16Bit:
+				{
+					SplitXBitToYSource(chip, 64, 16);
+					break;
+				}
+				case ChipType.Split_64To32Bit:
+				{
+					SplitXBitToYSource(chip, 64, 32);
+					break;
+				}
+				case ChipType.Split_32To4Bit:
+				{
+					SplitXBitToYSource(chip, 32, 4);
+					break;
+				}
+				case ChipType.Split_32To8Bit:
+				{
+					SplitXBitToYSource(chip, 32, 8);
+					break;
+				}
+				case ChipType.Split_32To16Bit:
+				{
+					SplitXBitToYSource(chip, 32, 16);
+					break;
+				}
+				case ChipType.Split_64To1Bit:
+				{
+					SimPin in64 = chip.InputPins[0];
+
+					for (int i = 0; i < 64; i++)
+					{
+						chip.OutputPins[i].State.SetBit(0, in64.State.GetBit(63 - i));
+					}
+					break;
+				}
+				case ChipType.Split_32To1Bit:
+				{
+					SimPin in64 = chip.InputPins[0];
+
+					for (int i = 0; i < 32; i++)
+					{
+						chip.OutputPins[i].State.SetBit(0, in64.State.GetBit(31 - i));
+					}
+					break;
+				}
 				case ChipType.Merge_4To8Bit:
 				{
 					SimPin in4A = chip.InputPins[0];
@@ -266,6 +371,12 @@ namespace DLS.Simulation
 					out16.State.Set16BitFrom8BitSources(in8B.State, in8A.State);
 					break;
 				}
+				case ChipType.Merge_4To16Bit:
+					MergeXBitToYSource(chip, 4, 16);
+					break;
+				case ChipType.Split_16To4Bit:
+					SplitXBitToYSource(chip, 16, 4);
+					break;
 				case ChipType.Split_8To4Bit:
 				{
 					SimPin in8 = chip.InputPins[0];
@@ -524,6 +635,40 @@ namespace DLS.Simulation
 
 					break;
 				}
+			}
+		}
+		
+		public static void MergeXBitToYSource(SimChip chip, int inputBits, int outputBits)
+		{
+			UInt64 output = 0;
+			UInt64 tristate = 0;
+			UInt64 mask = 1ul << inputBits;
+			for (int i = 0; i < outputBits / inputBits; i++)
+			{
+				output |= (chip.InputPins[i].State.GetRawBits() & mask) << (i * inputBits);
+				tristate |= (chip.InputPins[i].State.GetTristateFlags() & mask) << (i * inputBits);
+			}
+
+			chip.OutputPins[0].State.SetAllBits(output);
+			chip.OutputPins[0].State.SetAllTristateFlags(tristate);
+		}
+		
+		public static void SplitXBitToYSource(SimChip chip, int inputBits, int outputBits)
+		{
+			UInt64 input = chip.InputPins[0].State.GetRawBits(); 
+			UInt64 tristate = chip.InputPins[0].State.GetTristateFlags();
+
+			int groups = inputBits / outputBits;
+			UInt64 mask = (1ul << outputBits) - 1;
+
+			for (int i = 0; i < groups; i++)
+			{
+				int shift = (groups - 1 - i) * outputBits;
+				UInt64 part = (input >> shift) & mask;
+				UInt64 tri = (tristate >> shift) & mask;
+
+				chip.OutputPins[i].State.SetAllBits(part);
+				chip.OutputPins[i].State.SetAllTristateFlags(tri);
 			}
 		}
 
