@@ -4,7 +4,7 @@
   "ChipType": 0,
   "Size": {
     "x": 0.725,
-    "y": 4.5
+    "y": 5.0
   },
   "Colour": {
     "r": 0.568993151,
@@ -159,6 +159,50 @@
       },
       "OutputPinColourInfo":[{"PinColour":0,"PinID":0}],
       "InternalData":null
+    },
+    {
+      "Name":"KEY",
+      "ID":1820214005,
+      "Label":"",
+      "Position":{
+        "x":-5.8225,
+        "y":-4.6875
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":0}],
+      "InternalData":[0]
+    },
+    {
+      "Name":"KEY",
+      "ID":1540150816,
+      "Label":"",
+      "Position":{
+        "x":-5.8225,
+        "y":-5.1875
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":0}],
+      "InternalData":[1]
+    },
+    {
+      "Name":"KEY",
+      "ID":358780599,
+      "Label":"",
+      "Position":{
+        "x":-5.1975,
+        "y":-4.6875
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":0}],
+      "InternalData":[2]
+    },
+    {
+      "Name":"KEY",
+      "ID":2133816873,
+      "Label":"",
+      "Position":{
+        "x":-5.1975,
+        "y":-5.1875
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":0}],
+      "InternalData":[3]
     }
   ],
   "Wires":[

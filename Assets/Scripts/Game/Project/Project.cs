@@ -217,9 +217,9 @@ namespace DLS.Game
 		}
 
 		// Key chip has been bound to a different key, so simulation must be updated
-		public void NotifyKeyChipBindingChanged(SubChipInstance keyChip, char newKey)
+		public void NotifyKeyChipBindingChanged(SubChipInstance keyChip, byte newKey)
 		{
-			keyChip.SetKeyChipActivationChar(newKey);
+			keyChip.SetKeyChipActivation(newKey);
 			SimChip simChip = rootSimChip.GetSubChipFromID(keyChip.ID);
 			simChip.ChangeKeyBinding(newKey);
 		}

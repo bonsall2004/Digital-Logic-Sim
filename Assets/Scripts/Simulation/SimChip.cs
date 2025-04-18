@@ -125,7 +125,7 @@ namespace DLS.Simulation
 
 		public bool Sim_IsReady() => numInputsReady == numConnectedInputs;
 
-		public void ChangeKeyBinding(char key)
+		public void ChangeKeyBinding(byte key)
 		{
 			InternalState[0] = key;
 		}

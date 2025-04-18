@@ -27,7 +27,7 @@ namespace DLS.Game
 
 		public readonly string MultiLineName;
 		public readonly PinInstance[] OutputPins;
-		public string activationKeyString; // input char for the 'key chip' type (stored as string to avoid allocating when drawing)
+		public byte activationKey; // input key for the 'key chip' type
 		public string Label;
 
 		public SubChipInstance(ChipDescription description, SubChipDescription subChipDesc)
@@ -58,7 +58,7 @@ namespace DLS.Game
 
 				if (ChipType == ChipType.Key)
 				{
-					SetKeyChipActivationChar((char)subChipDesc.InternalData[0]);
+					SetKeyChipActivation((byte)subChipDesc.InternalData[0]);
 				}
 
 				if (IsBus && InternalData.Length > 1)
@@ -123,11 +123,11 @@ namespace DLS.Game
 			InternalData[0] = (uint)busPair.ID;
 		}
 
-		public void SetKeyChipActivationChar(char c)
+		public void SetKeyChipActivation(byte key)
 		{
 			if (ChipType != ChipType.Key) throw new Exception("Expected KeyChip type, but instead got: " + ChipType);
-			activationKeyString = c.ToString();
-			InternalData[0] = c;
+			activationKey = key;
+			InternalData[0] = key;
 		}
 
 		public void UpdatePinLayout()
