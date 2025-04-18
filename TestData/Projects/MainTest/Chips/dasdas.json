@@ -1,0 +1,32 @@
+{
+  "Name": "dasdas",
+  "NameLocation": 0,
+  "ChipType": 0,
+  "Size": {
+    "x": 1.025,
+    "y": 0.625
+  },
+  "Colour": {
+    "r": 0.5163499,
+    "g": 0.117575027,
+    "b": 0.38900733,
+    "a": 1
+  },
+  "InputPins":[
+    {
+      "Name":"IN",
+      "ID":213194461,
+      "Position":{
+        "x":-3.9902,
+        "y":-0.11765
+      },
+      "BitCount":16,
+      "Colour":0,
+      "ValueDisplayMode":0
+    }
+  ],
+  "OutputPins":[],
+  "SubChips":[],
+  "Wires":[],
+  "Displays": null
+}
