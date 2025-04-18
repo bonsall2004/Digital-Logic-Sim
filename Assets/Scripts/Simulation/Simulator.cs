@@ -202,8 +202,8 @@ namespace DLS.Simulation
 				// ---- Process Built-in chips ----
 				case ChipType.Nand:
 				{
-					uint andOp = chip.InputPins[0].State.GetRawBits() & chip.InputPins[1].State.GetRawBits();
-					uint nandOp = ~andOp & 1;
+					UInt64 andOp = chip.InputPins[0].State.GetRawBits() & chip.InputPins[1].State.GetRawBits();
+					UInt64 nandOp = ~andOp & 1;
 					chip.OutputPins[0].State.SetBit(0, nandOp);
 					break;
 				}
@@ -230,7 +230,7 @@ namespace DLS.Simulation
 
 					for (int i = 0; i < 4; i++)
 					{
-						uint inputState = chip.InputPins[3 - i].State.GetBit(0);
+						UInt64 inputState = chip.InputPins[3 - i].State.GetBit(0);
 						out4.State.SetBit(i, inputState);
 					}
 
@@ -334,7 +334,7 @@ namespace DLS.Simulation
 					// Detect clock rising edge
 					bool clockHigh = clockPin.FirstBitHigh();
 					bool isRisingEdge = clockHigh && chip.InternalState[^1] == 0;
-					chip.InternalState[^1] = clockHigh ? 1u : 0;
+					chip.InternalState[^1] = clockHigh ? 1ul : 0;
 
 					if (isRisingEdge)
 					{
@@ -349,8 +349,8 @@ namespace DLS.Simulation
 						// Write to back-buffer
 						else if (writePin.FirstBitHigh())
 						{
-							uint addressIndex = addressPin.GetRawBits() + addressSpace;
-							uint data = redPin.GetRawBits() | (greenPin.GetRawBits() << 4) | (bluePin.GetRawBits() << 8);
+							UInt64 addressIndex = addressPin.GetRawBits() + addressSpace;
+							UInt64 data = redPin.GetRawBits() | (greenPin.GetRawBits() << 4) | (bluePin.GetRawBits() << 8);
 							chip.InternalState[addressIndex] = data;
 						}
 
@@ -365,7 +365,7 @@ namespace DLS.Simulation
 					}
 
 					// Output current pixel colour
-					uint colData = chip.InternalState[addressPin.GetRawBits()];
+					UInt64 colData = chip.InternalState[addressPin.GetRawBits()];
 					chip.OutputPins[0].State.SetAllBits_NoneDisconnected((colData >> 0) & 0b1111); // red
 					chip.OutputPins[1].State.SetAllBits_NoneDisconnected((colData >> 4) & 0b1111); // green
 					chip.OutputPins[2].State.SetAllBits_NoneDisconnected((colData >> 8) & 0b1111); // blue
@@ -385,7 +385,7 @@ namespace DLS.Simulation
 					// Detect clock rising edge
 					bool clockHigh = clockPin.FirstBitHigh();
 					bool isRisingEdge = clockHigh && chip.InternalState[^1] == 0;
-					chip.InternalState[^1] = clockHigh ? 1u : 0;
+					chip.InternalState[^1] = clockHigh ? 1ul : 0;
 
 					if (isRisingEdge)
 					{
@@ -400,8 +400,8 @@ namespace DLS.Simulation
 						// Write to back-buffer
 						else if (writePin.FirstBitHigh())
 						{
-							uint addressIndex = addressPin.GetRawBits() + addressSpace;
-							uint data = pixelInputPin.GetRawBits();
+							UInt64 addressIndex = addressPin.GetRawBits() + addressSpace;
+							UInt64 data = pixelInputPin.GetRawBits();
 							chip.InternalState[addressIndex] = data;
 						}
 
@@ -416,7 +416,7 @@ namespace DLS.Simulation
 					}
 
 					// Output current pixel colour
-					uint pixelState = chip.InternalState[addressPin.GetRawBits()];
+					UInt64 pixelState = chip.InternalState[addressPin.GetRawBits()];
 					chip.OutputPins[0].State.SetAllBits_NoneDisconnected(pixelState);
 
 					break;
@@ -432,7 +432,7 @@ namespace DLS.Simulation
 					// Detect clock rising edge
 					bool clockHigh = clockPin.FirstBitHigh();
 					bool isRisingEdge = clockHigh && chip.InternalState[^1] == 0;
-					chip.InternalState[^1] = clockHigh ? 1u : 0;
+					chip.InternalState[^1] = clockHigh ? 1ul : 0;
 
 					// Write/Reset on rising edge
 					if (isRisingEdge)
@@ -465,7 +465,7 @@ namespace DLS.Simulation
 					// Detect clock rising edge
 					bool clockHigh = clockPin.FirstBitHigh();
 					bool isRisingEdge = clockHigh && chip.InternalState[^1] == 0;
-					chip.InternalState[^1] = clockHigh ? 1u : 0;
+					chip.InternalState[^1] = clockHigh ? 1ul : 0;
 
 					// Write/Reset on rising edge
 					if (isRisingEdge)
@@ -489,24 +489,24 @@ namespace DLS.Simulation
 				}
 				case ChipType.Rom_16Bit:
 				{
-					uint address = chip.InputPins[0].State.GetRawBits();
-					uint data = chip.InternalState[address];
+					UInt64 address = chip.InputPins[0].State.GetRawBits();
+					UInt64 data = chip.InternalState[address];
 					chip.OutputPins[0].State.SetAllBits_NoneDisconnected(data);
 					break;
 				}
 				case ChipType.Rom_256x16:
 				{
 					const int ByteMask = 0b11111111;
-					uint address = chip.InputPins[0].State.GetRawBits();
-					uint data = chip.InternalState[address];
+					UInt64 address = chip.InputPins[0].State.GetRawBits();
+					UInt64 data = chip.InternalState[address];
 					chip.OutputPins[0].State.SetAllBits_NoneDisconnected((data >> 8) & ByteMask);
 					chip.OutputPins[1].State.SetAllBits_NoneDisconnected(data & ByteMask);
 					break;
 				}
 				case ChipType.Rom_16Bit_24:
 				{
-					uint address = chip.InputPins[0].State.GetRawBits();
-					uint data = chip.InternalState[address];
+					UInt64 address = chip.InputPins[0].State.GetRawBits();
+					UInt64 data = chip.InternalState[address];
 					chip.OutputPins[0].State.SetAllBits_NoneDisconnected((data >> 16) & 0xff);
 					chip.OutputPins[1].State.SetAllBits_NoneDisconnected(data & 0xffff);
 					break;

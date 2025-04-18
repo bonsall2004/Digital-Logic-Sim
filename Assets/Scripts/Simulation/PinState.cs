@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace DLS.Simulation
 {
 	public class PinState
@@ -10,20 +13,20 @@ namespace DLS.Simulation
 		public readonly int BitCount;
 
 		// LOW/HIGH state of each bit
-		uint bitStates;
+		UInt64 bitStates;
 
 		// If flag is set, it means the corresponding bit state is DISCONNECTED
 		// (note: corresponding bit state is expected to be set to LOW in that case)
-		uint tristateFlags;
+		UInt64 tristateFlags;
 
 		public PinState(int numBits)
 		{
 			BitCount = numBits;
 		}
 
-		public uint GetRawBits() => bitStates;
+		public UInt64 GetRawBits() => bitStates;
 
-		public void SetAllBits_NoneDisconnected(uint newBitStates)
+		public void SetAllBits_NoneDisconnected(UInt64 newBitStates)
 		{
 			bitStates = newBitStates;
 			tristateFlags = 0;
@@ -31,10 +34,10 @@ namespace DLS.Simulation
 
 		public bool FirstBitHigh() => (bitStates & 1) == LogicHigh;
 
-		public void SetBit(int bitIndex, uint newState)
+		public void SetBit(int bitIndex, UInt64 newState)
 		{
 			// Clear current state
-			uint mask = ~(1u << bitIndex);
+			UInt64 mask = ~(1ul << bitIndex);
 			bitStates &= mask;
 			tristateFlags &= mask;
 
@@ -43,10 +46,10 @@ namespace DLS.Simulation
 			tristateFlags |= (newState >> 1) << bitIndex;
 		}
 
-		public uint GetBit(int bitIndex)
+		public UInt64 GetBit(int bitIndex)
 		{
-			uint state = (bitStates >> bitIndex) & 1;
-			uint tri = (tristateFlags >> bitIndex) & 1;
+			UInt64 state = (bitStates >> bitIndex) & 1;
+			UInt64 tri = (tristateFlags >> bitIndex) & 1;
 			return state | (tri << 1); // Combine to form tri-stated value: 0 = LOW, 1 = HIGH, 2 = DISCONNECTED
 		}
 
@@ -108,16 +111,16 @@ namespace DLS.Simulation
 
 		public void Toggle(int bitIndex)
 		{
-			bitStates ^= 1u << bitIndex;
+			bitStates ^= 1ul << bitIndex;
 
 			// Clear tristate flag (can't be disconnected if toggling)
-			tristateFlags &= ~(1u << bitIndex);
+			tristateFlags &= ~(1ul << bitIndex);
 		}
 
 		public void SetAllDisconnected()
 		{
 			bitStates = 0;
-			tristateFlags = (1u << BitCount) - 1;
+			tristateFlags = (1ul << BitCount) - 1;
 		}
 	}
 }
