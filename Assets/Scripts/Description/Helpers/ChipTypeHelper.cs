@@ -14,9 +14,8 @@ namespace DLS.Description
 			{ ChipType.Nand4, "NAND-4" },
 			{ ChipType.Nand8, "NAND-8" },
 			{ ChipType.Nand16, "NAND-16" },
-			// TODO: 32 and 64-bit NAND
-			//{ ChipType.Nand32, "NAND-32" },
-			//{ ChipType.Nand64, "NAND-64" },
+			{ ChipType.Nand32, "NAND-32" },
+			{ ChipType.Nand64, "NAND-64" },
 			{ ChipType.Clock, "CLOCK" },
 			{ ChipType.TriStateBuffer, "3-STATE BUFFER" },
 			// ---- Memory ----

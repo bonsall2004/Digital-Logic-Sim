@@ -44,7 +44,7 @@ namespace DLS.Simulation
 
 		public bool FirstBitHigh() => (bitStates & 1) == LogicHigh;
 
-		public void SetBit(int bitIndex, uint newState)
+		public void SetBit(int bitIndex, UInt64 newState)
 		{
 			UInt64 bit = (UInt64)1UL << bitIndex;
 			UInt64 mask = ~bit;

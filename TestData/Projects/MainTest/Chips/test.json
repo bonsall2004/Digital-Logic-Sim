@@ -4,7 +4,7 @@
   "ChipType": 0,
   "Size": {
     "x": 0.725,
-    "y": 5.0
+    "y": 8.0
   },
   "Colour": {
     "r": 0.568993151,
@@ -81,10 +81,32 @@
     },
     {
       "Name":"IN",
+      "ID":874381931,
+      "Position":{
+        "x":-10.05033,
+        "y":-7.27695
+      },
+      "BitCount":64,
+      "Colour":0,
+      "ValueDisplayMode":0
+    },
+    {
+      "Name":"IN",
       "ID":1305492057,
       "Position":{
         "x":-2.0,
         "y":-7.6875
+      },
+      "BitCount":64,
+      "Colour":0,
+      "ValueDisplayMode":0
+    },
+    {
+      "Name":"IN",
+      "ID":204042605,
+      "Position":{
+        "x":-10.03979,
+        "y":-9.02116
       },
       "BitCount":64,
       "Colour":0,
@@ -120,6 +142,17 @@
       "Position":{
         "x":3.375,
         "y":-7.6875
+      },
+      "BitCount":64,
+      "Colour":0,
+      "ValueDisplayMode":0
+    },
+    {
+      "Name":"OUT",
+      "ID":136883087,
+      "Position":{
+        "x":-2.22995,
+        "y":-7.90087
       },
       "BitCount":64,
       "Colour":0,
@@ -203,6 +236,83 @@
       },
       "OutputPinColourInfo":[{"PinColour":0,"PinID":0}],
       "InternalData":[3]
+    },
+    {
+      "Name":"NAND-64",
+      "ID":22808059,
+      "Label":"",
+      "Position":{
+        "x":-6.08323,
+        "y":-7.98642
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":2}],
+      "InternalData":null
+    },
+    {
+      "Name":"NAND",
+      "ID":1137068317,
+      "Label":"",
+      "Position":{
+        "x":-6.125,
+        "y":-10.9375
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":2}],
+      "InternalData":null
+    },
+    {
+      "Name":"NAND-4",
+      "ID":147585003,
+      "Label":"",
+      "Position":{
+        "x":-6.125,
+        "y":-11.6875
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":2}],
+      "InternalData":null
+    },
+    {
+      "Name":"NAND-8",
+      "ID":2023853718,
+      "Label":"",
+      "Position":{
+        "x":-6.125,
+        "y":-12.6875
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":2}],
+      "InternalData":null
+    },
+    {
+      "Name":"NAND-16",
+      "ID":1041573239,
+      "Label":"",
+      "Position":{
+        "x":-6.125,
+        "y":-14.3125
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":2}],
+      "InternalData":null
+    },
+    {
+      "Name":"NAND-32",
+      "ID":2110378800,
+      "Label":"",
+      "Position":{
+        "x":-6.125,
+        "y":-16.4375
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":2}],
+      "InternalData":null
+    },
+    {
+      "Name":"NAND-64",
+      "ID":2008245653,
+      "Label":"",
+      "Position":{
+        "x":-6.125,
+        "y":-19.0625
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":2}],
+      "InternalData":null
     }
   ],
   "Wires":[
@@ -270,6 +380,48 @@
       "TargetPinAddress":{
         "PinID":0,
         "PinOwnerID":1236753332
+      },
+      "ConnectionType":0,
+      "ConnectedWireIndex":-1,
+      "ConnectedWireSegmentIndex":-1,
+      "Points":[{"x":0.0,"y":0.0},{"x":0.0,"y":0.0}]
+    },
+    {
+      "SourcePinAddress":{
+        "PinID":0,
+        "PinOwnerID":204042605
+      },
+      "TargetPinAddress":{
+        "PinID":1,
+        "PinOwnerID":22808059
+      },
+      "ConnectionType":0,
+      "ConnectedWireIndex":-1,
+      "ConnectedWireSegmentIndex":-1,
+      "Points":[{"x":0.0,"y":0.0},{"x":0.0,"y":0.0}]
+    },
+    {
+      "SourcePinAddress":{
+        "PinID":0,
+        "PinOwnerID":874381931
+      },
+      "TargetPinAddress":{
+        "PinID":0,
+        "PinOwnerID":22808059
+      },
+      "ConnectionType":0,
+      "ConnectedWireIndex":-1,
+      "ConnectedWireSegmentIndex":-1,
+      "Points":[{"x":0.0,"y":0.0},{"x":0.0,"y":0.0}]
+    },
+    {
+      "SourcePinAddress":{
+        "PinID":2,
+        "PinOwnerID":22808059
+      },
+      "TargetPinAddress":{
+        "PinID":0,
+        "PinOwnerID":136883087
       },
       "ConnectionType":0,
       "ConnectedWireIndex":-1,

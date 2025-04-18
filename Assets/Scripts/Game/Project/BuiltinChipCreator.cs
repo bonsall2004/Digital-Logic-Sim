@@ -33,9 +33,8 @@ namespace DLS.Game
 				CreateNand4(),
 				CreateNand8(),
 				CreateNand16(),
-				// TODO: 32 and 64-bit NAND
-				//CreateNand32(),
-				//CreateNand64(),
+				CreateNand32(),
+				CreateNand64(),
 				CreateTristateBuffer(),
 				CreateClock(),
 				// ---- Memory ----
@@ -141,19 +140,18 @@ namespace DLS.Game
 
 			PinDescription[] inputPins = { CreatePinDescription("IN B", 0, PinBitCount.Bit16), CreatePinDescription("IN A", 1, PinBitCount.Bit16) };
 			PinDescription[] outputPins = { CreatePinDescription("OUT", 2, PinBitCount.Bit16) };
-			Vector2 size = new(CalculateGridSnappedWidth(GridSize * 8), SubChipInstance.MinChipHeightForPins(inputPins, outputPins));
+			Vector2 size = new(CalculateGridSnappedWidth(GridSize * 10), SubChipInstance.MinChipHeightForPins(inputPins, outputPins));
 
 			return CreateBuiltinChipDesciption(ChipType.Nand16, size, col, inputPins, outputPins);
 		}
 
-		// TODO: 32 and 64-bit NAND
-		/*static ChipDescription CreateNand32()
+		static ChipDescription CreateNand32()
 		{
 			Color col = new(0.73f, 0.26f, 0.26f);
 
 			PinDescription[] inputPins = { CreatePinDescription("IN B", 0, PinBitCount.Bit32), CreatePinDescription("IN A", 1, PinBitCount.Bit32) };
 			PinDescription[] outputPins = { CreatePinDescription("OUT", 2, PinBitCount.Bit32) };
-			Vector2 size = new(CalculateGridSnappedWidth(GridSize * 8), SubChipInstance.MinChipHeightForPins(inputPins, outputPins));
+			Vector2 size = new(CalculateGridSnappedWidth(GridSize * 10), SubChipInstance.MinChipHeightForPins(inputPins, outputPins));
 
 			return CreateBuiltinChipDesciption(ChipType.Nand32, size, col, inputPins, outputPins);
 		}
@@ -164,10 +162,10 @@ namespace DLS.Game
 
 			PinDescription[] inputPins = { CreatePinDescription("IN B", 0, PinBitCount.Bit64), CreatePinDescription("IN A", 1, PinBitCount.Bit64) };
 			PinDescription[] outputPins = { CreatePinDescription("OUT", 2, PinBitCount.Bit64) };
-			Vector2 size = new(CalculateGridSnappedWidth(GridSize * 8), SubChipInstance.MinChipHeightForPins(inputPins, outputPins));
+			Vector2 size = new(CalculateGridSnappedWidth(GridSize * 10), SubChipInstance.MinChipHeightForPins(inputPins, outputPins));
 
 			return CreateBuiltinChipDesciption(ChipType.Nand64, size, col, inputPins, outputPins);
-		}*/
+		}
 
 		static ChipDescription dev_CreateRAM_8()
 		{
