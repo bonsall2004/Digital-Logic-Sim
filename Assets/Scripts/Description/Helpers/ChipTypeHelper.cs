@@ -21,15 +21,38 @@ namespace DLS.Description
 			{ ChipType.Rom_16Bit_24, $"ROM 16-24" },
 			// ---- Split / Merge ----
 			{ ChipType.Split_4To1Bit, "4-1BIT" },
+			
 			{ ChipType.Split_8To1Bit, "8-1BIT" },
 			{ ChipType.Split_8To4Bit, "8-4BIT" },
 			{ ChipType.Merge_4To8Bit, "4-8BIT" },
 			{ ChipType.Merge_1To8Bit, "1-8BIT" },
 			{ ChipType.Merge_1To4Bit, "1-4BIT" },
 			{ ChipType.Merge_1To16Bit, "1-16BIT" },
+			{ ChipType.Merge_4To16Bit, "4-16BIT" },
 			{ ChipType.Merge_8To16Bit, "8-16BIT" },
 			{ ChipType.Split_16To1Bit, "16-1BIT" },
+			{ ChipType.Split_16To4Bit, "16-4BIT" },
 			{ ChipType.Split_16To8Bit, "16-8BIT" },
+			
+			{ ChipType.Split_32To1Bit, "32-1BIT" },
+			{ ChipType.Split_32To4Bit, "32-4BIT" },
+			{ ChipType.Split_32To8Bit, "32-8BIT" },
+			{ ChipType.Split_32To16Bit,"32-16BIT" },
+			{ ChipType.Split_64To1Bit, "64-1BIT" },
+			{ ChipType.Split_64To4Bit, "64-4BIT" },
+			{ ChipType.Split_64To8Bit, "64-8BIT" },
+			{ ChipType.Split_64To16Bit,"64-16BIT" },
+			{ ChipType.Split_64To32Bit,"64-32BIT" },
+			
+			{ ChipType.Merge_1To32Bit, "1-32BIT" },
+			{ ChipType.Merge_4To32Bit, "4-32BIT" },
+			{ ChipType.Merge_8To32Bit, "8-32BIT" },
+			{ ChipType.Merge_16To32Bit,"16-32BIT" },
+			{ ChipType.Merge_1To64Bit, "1-64BIT" },
+			{ ChipType.Merge_4To64Bit, "4-64BIT" },
+			{ ChipType.Merge_8To64Bit, "8-64BIT" },
+			{ ChipType.Merge_16To64Bit,"16-64BIT" },
+			{ ChipType.Merge_32To64Bit,"32-64BIT" },
 
 			// ---- Displays -----
 			{ ChipType.DisplayRGB, "RGB DISPLAY" },
