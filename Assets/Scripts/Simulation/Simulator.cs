@@ -207,6 +207,42 @@ namespace DLS.Simulation
 					chip.OutputPins[0].State.SetBit(0, nandOp);
 					break;
 				}
+				case ChipType.Nand4:
+				{
+					uint andOp = chip.InputPins[0].State.GetRawBits() & chip.InputPins[1].State.GetRawBits();
+					uint nandOp = ~andOp & 0xF;
+					chip.OutputPins[0].State.SetAllBits_NoneDisconnected(nandOp);
+					break;
+				}
+				case ChipType.Nand8:
+				{
+					uint andOp = chip.InputPins[0].State.GetRawBits() & chip.InputPins[1].State.GetRawBits();
+					uint nandOp = ~andOp & 0xFF;
+					chip.OutputPins[0].State.SetAllBits_NoneDisconnected(nandOp);
+					break;
+				}
+				case ChipType.Nand16:
+				{
+					uint andOp = chip.InputPins[0].State.GetRawBits() & chip.InputPins[1].State.GetRawBits();
+					uint nandOp = ~andOp & 0xFFFF;
+					chip.OutputPins[0].State.SetAllBits_NoneDisconnected(nandOp);
+					break;
+				}
+				// TODO: 32 and 64-bit NAND
+				/*case ChipType.Nand32:
+				{
+					ulong andOp = chip.InputPins[0].State.GetRawBits() & chip.InputPins[1].State.GetRawBits();
+					ulong nandOp = ~andOp & 0xFFFFFFFF;
+					chip.OutputPins[0].State.SetAllBits_NoneDisconnected(nandOp);
+					break;
+				}
+				case ChipType.Nand64:
+				{
+					ulong andOp = chip.InputPins[0].State.GetRawBits() & chip.InputPins[1].State.GetRawBits();
+					ulong nandOp = ~andOp;
+					chip.OutputPins[0].State.SetAllBits_NoneDisconnected(nandOp);
+					break;
+				}*/
 				case ChipType.Clock:
 				{
 					bool high = stepsPerClockTransition != 0 && ((simulationFrame / stepsPerClockTransition) & 1) == 0;
@@ -628,8 +664,8 @@ namespace DLS.Simulation
 					if (ChipTypeHelper.IsBusOriginType(chip.ChipType))
 					{
 						SimPin inputPin = chip.InputPins[0];
-					
-						
+
+
 						chip.OutputPins[0].State.SetFromSource(inputPin.State);
 					}
 

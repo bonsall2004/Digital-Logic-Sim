@@ -6,6 +6,12 @@ namespace DLS.Description
 
 		// ---- Basic Chips ----
 		Nand,
+		Nand4,
+		Nand8,
+		Nand16,
+		// TODO: 32 and 64-bit NAND
+		// Nand32,
+		// Nand64,
 		TriStateBuffer,
 		Clock,
 

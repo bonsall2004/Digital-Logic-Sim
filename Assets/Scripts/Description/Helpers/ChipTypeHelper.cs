@@ -11,6 +11,12 @@ namespace DLS.Description
 		{
 			// ---- Basic Chips ----
 			{ ChipType.Nand, "NAND" },
+			{ ChipType.Nand4, "NAND-4" },
+			{ ChipType.Nand8, "NAND-8" },
+			{ ChipType.Nand16, "NAND-16" },
+			// TODO: 32 and 64-bit NAND
+			//{ ChipType.Nand32, "NAND-32" },
+			//{ ChipType.Nand64, "NAND-64" },
 			{ ChipType.Clock, "CLOCK" },
 			{ ChipType.TriStateBuffer, "3-STATE BUFFER" },
 			// ---- Memory ----
@@ -96,11 +102,11 @@ namespace DLS.Description
 
 		public static bool IsBusOriginType(ChipType type) => type is ChipType.Bus_1Bit or ChipType.Bus_4Bit or ChipType.Bus_8Bit or ChipType.Bus_16Bit or ChipType.Bus_32Bit or ChipType.Bus_64Bit;
 
-		public static bool IsBusTerminusType(ChipType type) => type is ChipType.BusTerminus_1Bit or ChipType.BusTerminus_4Bit or ChipType.BusTerminus_8Bit or ChipType.BusTerminus_16Bit or ChipType.BusTerminus_32Bit or ChipType.BusTerminus_64Bit 
+		public static bool IsBusTerminusType(ChipType type) => type is ChipType.BusTerminus_1Bit or ChipType.BusTerminus_4Bit or ChipType.BusTerminus_8Bit or ChipType.BusTerminus_16Bit or ChipType.BusTerminus_32Bit or ChipType.BusTerminus_64Bit
 ;
 
 		public static bool IsRomType(ChipType type) => type == ChipType.Rom_256x16 || type == ChipType.Rom_16Bit || type == ChipType.Rom_16Bit_24;
-		
+
 		public static int RomWidth(ChipType type) => type == ChipType.Rom_256x16 ? 16 : type == ChipType.Rom_16Bit ? 16 : type == ChipType.Rom_16Bit_24 ? 24 : 0;
 
 		public static ChipType GetCorrespondingBusTerminusType(ChipType type)
@@ -117,7 +123,7 @@ namespace DLS.Description
 			};
 		}
 
-		public static ChipType GetPinType(bool isInput, PinBitCount numBits) 
+		public static ChipType GetPinType(bool isInput, PinBitCount numBits)
 		{
 			if (isInput)
 			{

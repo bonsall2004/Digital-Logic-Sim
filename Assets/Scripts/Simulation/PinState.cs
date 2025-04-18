@@ -44,23 +44,19 @@ namespace DLS.Simulation
 
 		public bool FirstBitHigh() => (bitStates & 1) == LogicHigh;
 
-		public void SetBit(int bitIndex, UInt64 newState)
+		public void SetBit(int bitIndex, uint newState)
 		{
-			// Clear current state
-			UInt64 mask = ~(1ul << bitIndex);
-			bitStates &= mask;
-			tristateFlags &= mask;
-
-			// Set new state
-			bitStates |= (newState & 1) << bitIndex;
-			tristateFlags |= (newState >> 1) << bitIndex;
+			UInt64 bit = (UInt64)1UL << bitIndex;
+			UInt64 mask = ~bit;
+			bitStates = (newState & 1) != 0 ? (bitStates | bit) : (bitStates & mask);
+			tristateFlags = (newState & 2) != 0 ? (tristateFlags | bit) : (tristateFlags & mask);
 		}
 
 		public UInt64 GetBit(int bitIndex)
 		{
 			UInt64 state = (bitStates >> bitIndex) & 1;
-			UInt64 tri = (tristateFlags >> bitIndex) & 1;
-			return state | (tri << 1); // Combine to form tri-stated value: 0 = LOW, 1 = HIGH, 2 = DISCONNECTED
+			UInt64 tri = (tristateFlags >> (bitIndex - 1)) & 2;
+			return state | tri; // Combine to form tri-stated value: 0 = LOW, 1 = HIGH, 2 = DISCONNECTED
 		}
 
 		public void SetFromSource(PinState source)
