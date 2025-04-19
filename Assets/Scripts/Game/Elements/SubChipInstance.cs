@@ -27,7 +27,6 @@ namespace DLS.Game
 
 		public readonly string MultiLineName;
 		public readonly PinInstance[] OutputPins;
-		public byte activationKey; // input key for the 'key chip' type
 		public string Label;
 
 		public SubChipInstance(ChipDescription description, SubChipDescription subChipDesc)
@@ -56,11 +55,6 @@ namespace DLS.Game
 				InternalData = new UInt64[subChipDesc.InternalData.Length];
 				Array.Copy(subChipDesc.InternalData, InternalData, InternalData.Length);
 
-				if (ChipType == ChipType.Key)
-				{
-					SetKeyChipActivation((byte)subChipDesc.InternalData[0]);
-				}
-
 				if (IsBus && InternalData.Length > 1)
 				{
 					foreach (PinInstance pin in AllPins)
@@ -88,6 +82,8 @@ namespace DLS.Game
 			}
 		}
 
+		public UInt64 Clockspeed => InternalData[0];
+		public byte Key => (byte)InternalData[0];
 		public int LinkedBusPairID => IsBus ? (int)InternalData[0] : -1;
 		public bool BusIsFlipped => IsBus && InternalData.Length > 1 && InternalData[1] == 1;
 		public Vector2 Size => Description.Size;
@@ -123,10 +119,15 @@ namespace DLS.Game
 			InternalData[0] = (uint)busPair.ID;
 		}
 
+		public void SetClockspeed(UInt64 clockspeed)
+		{
+			if (ChipType != ChipType.Clock) throw new Exception("Expected ClockChip type, but instead got: " + ChipType);
+			InternalData[0] = clockspeed;
+		}
+
 		public void SetKeyChipActivation(byte key)
 		{
 			if (ChipType != ChipType.Key) throw new Exception("Expected KeyChip type, but instead got: " + ChipType);
-			activationKey = key;
 			InternalData[0] = key;
 		}
 

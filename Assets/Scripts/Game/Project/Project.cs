@@ -216,6 +216,13 @@ namespace DLS.Game
 			}
 		}
 
+		public void NotifyClockChipClockspeedChanged(SubChipInstance clockChip, UInt64 newClockspeed)
+		{
+			clockChip.SetClockspeed(newClockspeed);
+			SimChip simChip = rootSimChip.GetSubChipFromID(clockChip.ID);
+			simChip.ChangeClockspeed(newClockspeed);
+		}
+
 		// Key chip has been bound to a different key, so simulation must be updated
 		public void NotifyKeyChipBindingChanged(SubChipInstance keyChip, byte newKey)
 		{
@@ -451,7 +458,7 @@ namespace DLS.Game
 				if (!stopwatchTotal.IsRunning) stopwatchTotal.Start();
 
 				// ---- Run sim ----
-				Simulator.stepsPerClockTransition = stepsPerClockTransition;
+				Simulator.ticksPerSecond = targetTicksPerSecond;
 				SimChip simChip = rootSimChip;
 				if (simChip == null) continue; // Could potentially be null for a frame when switching between chips
 				Simulator.RunSimulationStep(simChip, inputPins);

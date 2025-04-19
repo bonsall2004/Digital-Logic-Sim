@@ -10,7 +10,7 @@ namespace DLS.Simulation
 	public static class Simulator
 	{
 		public static readonly Random rng = new();
-		public static int stepsPerClockTransition;
+		public static int ticksPerSecond;
 		public static int simulationFrame;
 		static uint pcg_rngState;
 
@@ -244,8 +244,13 @@ namespace DLS.Simulation
 				}
 				case ChipType.Clock:
 				{
-					bool high = stepsPerClockTransition != 0 && ((simulationFrame / stepsPerClockTransition) & 1) == 0;
-					chip.OutputPins[0].State.SetBit(0, high ? PinState.LogicHigh : PinState.LogicLow);
+					UInt64 targetTicks = (UInt64)ticksPerSecond / (chip.InternalState[0] << 1); // TODO: Perhaps store the target ticks per second as well?
+					if (++chip.InternalState[1] >= targetTicks)
+					{
+						UInt64 state = chip.OutputPins[0].State.GetRawBits();
+						chip.OutputPins[0].State.SetAllBits_NoneDisconnected(state ^ 1);
+						chip.InternalState[1] = 0;
+					}
 					break;
 				}
 				case ChipType.Split_4To1Bit:

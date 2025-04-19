@@ -127,6 +127,17 @@
     },
     {
       "Name":"OUT",
+      "ID":1545403558,
+      "Position":{
+        "x":0.793,
+        "y":-3.08126
+      },
+      "BitCount":1,
+      "Colour":0,
+      "ValueDisplayMode":0
+    },
+    {
+      "Name":"OUT",
       "ID":1739906773,
       "Position":{
         "x":3.33922,
@@ -180,17 +191,6 @@
         "y":0.11367
       },
       "OutputPinColourInfo":[{"PinColour":0,"PinID":1},{"PinColour":0,"PinID":2}],
-      "InternalData":null
-    },
-    {
-      "Name":"CLOCK",
-      "ID":573840001,
-      "Label":"",
-      "Position":{
-        "x":-2.22285,
-        "y":-2.42294
-      },
-      "OutputPinColourInfo":[{"PinColour":0,"PinID":0}],
       "InternalData":null
     },
     {
@@ -313,6 +313,17 @@
       },
       "OutputPinColourInfo":[{"PinColour":0,"PinID":2}],
       "InternalData":null
+    },
+    {
+      "Name":"CLOCK",
+      "ID":1463695326,
+      "Label":"",
+      "Position":{
+        "x":-1.73518,
+        "y":-3.08141
+      },
+      "OutputPinColourInfo":[{"PinColour":0,"PinID":0}],
+      "InternalData":[1,0]
     }
   ],
   "Wires":[
@@ -422,6 +433,20 @@
       "TargetPinAddress":{
         "PinID":0,
         "PinOwnerID":136883087
+      },
+      "ConnectionType":0,
+      "ConnectedWireIndex":-1,
+      "ConnectedWireSegmentIndex":-1,
+      "Points":[{"x":0.0,"y":0.0},{"x":0.0,"y":0.0}]
+    },
+    {
+      "SourcePinAddress":{
+        "PinID":0,
+        "PinOwnerID":1463695326
+      },
+      "TargetPinAddress":{
+        "PinID":0,
+        "PinOwnerID":1545403558
       },
       "ConnectionType":0,
       "ConnectedWireIndex":-1,

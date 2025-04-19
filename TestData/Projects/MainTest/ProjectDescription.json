@@ -3,11 +3,11 @@
   "DLSVersion_LastSaved": "2.1.0",
   "DLSVersion_EarliestCompatible": "2.0.0",
   "CreationTime": "2025-03-14T18:23:30.404+01:00",
-  "LastSaveTime": "2025-04-19T01:09:53.583+02:00",
+  "LastSaveTime": "2025-04-19T02:22:06.165+02:00",
   "Prefs_MainPinNamesDisplayMode": 0,
   "Prefs_ChipPinNamesDisplayMode": 1,
   "Prefs_SimPaused": false,
-  "Prefs_SimTargetStepsPerSecond": 1000,
+  "Prefs_SimTargetStepsPerSecond": 2000,
   "Prefs_SimStepsPerClockTick": 1,
   "AllCustomChipNames":[
     "AND",
