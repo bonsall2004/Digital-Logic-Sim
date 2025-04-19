@@ -2,13 +2,13 @@
   "ProjectName": "MainTest",
   "DLSVersion_LastSaved": "2.1.0",
   "DLSVersion_EarliestCompatible": "2.0.0",
-  "CreationTime": "2025-03-14T17:23:30.404+00:00",
-  "LastSaveTime": "2025-04-16T15:21:02.257+01:00",
+  "CreationTime": "2025-03-14T18:23:30.404+01:00",
+  "LastSaveTime": "2025-04-19T02:22:06.165+02:00",
   "Prefs_MainPinNamesDisplayMode": 0,
   "Prefs_ChipPinNamesDisplayMode": 1,
   "Prefs_SimPaused": false,
-  "Prefs_SimTargetStepsPerSecond": 1000,
-  "Prefs_SimStepsPerClockTick": 250,
+  "Prefs_SimTargetStepsPerSecond": 2000,
+  "Prefs_SimStepsPerClockTick": 1,
   "AllCustomChipNames":[
     "AND",
     "D-LATCH",
@@ -136,7 +136,7 @@
       "Name":"TEST"
     },
     {
-      "Chips":["dev.RAM-8","RAM-256×8","16-1BIT","16-8BIT","1-16BIT","8-16BIT","BUS-16","BUS-TERMINUS-16","IN-16","OUT-16","RAM-8Bit","RAM-16Bit","test","dasdas","RAM 8-8","RAM 16-16","ROM 8-16","ROM 16-16","ROM 16-24"],
+      "Chips":["dev.RAM-8","RAM-256×8","16-1BIT","16-8BIT","1-16BIT","8-16BIT","BUS-16","BUS-TERMINUS-16","IN-16","OUT-16","RAM-8Bit","RAM-16Bit","test","dasdas","RAM 8-8","RAM 16-16","ROM 8-16","ROM 16-16","ROM 16-24","IN-32","OUT-32","IN-64","OUT-64","BUS-32","BUS-64","NAND-4","NAND-8","NAND-16","NAND-32","NAND-64"],
       "IsToggledOpen":true,
       "Name":"OTHER"
     }

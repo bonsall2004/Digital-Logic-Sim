@@ -77,7 +77,8 @@ namespace DLS.SaveSystem
 				ChipType.Rom_256x16 => new UInt64[256],
 				ChipType.Rom_16Bit => new UInt64[65536],
 				ChipType.Rom_16Bit_24 => new UInt64[65536],
-				ChipType.Key => new UInt64[] { 'K' },
+				ChipType.Clock => new UInt64[] { 5, 0 },
+				ChipType.Key => new UInt64[] { 10 },
 				_ => ChipTypeHelper.IsBusType(type) ? new UInt64[2] : null
 			};
 

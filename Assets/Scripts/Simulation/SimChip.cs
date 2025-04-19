@@ -125,7 +125,12 @@ namespace DLS.Simulation
 
 		public bool Sim_IsReady() => numInputsReady == numConnectedInputs;
 
-		public void ChangeKeyBinding(char key)
+		public void ChangeClockspeed(UInt64 clockspeed)
+		{
+			InternalState[0] = clockspeed;
+		}
+
+		public void ChangeKeyBinding(byte key)
 		{
 			InternalState[0] = key;
 		}
